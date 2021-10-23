@@ -90,7 +90,18 @@ func SetupFilesChangedInfo(files []models.File) *widgets.Paragraph {
 	p.Border = true
 	p.Title = "Files changed info"
 	p.Text = BuildFileChangedInfo(files)
-	p.SetRect(75, 0, 100, 14)
+	p.SetRect(75, 0, 110, 12)
+
+	return p
+}
+
+func SetupVerification(vInfo models.Verification) *widgets.Paragraph {
+	p := widgets.NewParagraph()
+	p.WrapText = true
+	p.Border = true
+	p.Title = "Verification info"
+	p.Text = BuildCommitVerificationInfo(vInfo)
+	p.SetRect(115, 0, 140, 12)
 
 	return p
 }

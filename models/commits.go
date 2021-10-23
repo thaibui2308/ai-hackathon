@@ -21,14 +21,9 @@ type Commit struct {
 			Sha string `json:"sha"`
 			URL string `json:"url"`
 		} `json:"tree"`
-		URL          string `json:"url"`
-		CommentCount int    `json:"comment_count"`
-		Verification struct {
-			Verified  bool   `json:"verified"`
-			Reason    string `json:"reason"`
-			Signature string `json:"signature"`
-			Payload   string `json:"payload"`
-		} `json:"verification"`
+		URL          string       `json:"url"`
+		CommentCount int          `json:"comment_count"`
+		Verification Verification `json:"verification"`
 	} `json:"commit"`
 	URL         string `json:"url"`
 	HTMLURL     string `json:"html_url"`
@@ -99,4 +94,11 @@ type Stats struct {
 	Total     int `json:"total"`
 	Additions int `json:"additions"`
 	Deletions int `json:"deletions"`
+}
+
+type Verification struct {
+	Verified  bool   `json:"verified"`
+	Reason    string `json:"reason"`
+	Signature string `json:"signature"`
+	Payload   string `json:"payload"`
 }

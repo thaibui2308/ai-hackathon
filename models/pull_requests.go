@@ -24,10 +24,10 @@ type PullRequests []struct {
 		URL          string `json:"url"`
 		CommentCount int    `json:"comment_count"`
 		Verification struct {
-			Verified  bool        `json:"verified"`
-			Reason    string      `json:"reason"`
-			Signature interface{} `json:"signature"`
-			Payload   interface{} `json:"payload"`
+			Verified  bool   `json:"verified"`
+			Reason    string `json:"reason"`
+			Signature string `json:"signature"`
+			Payload   string `json:"payload"`
 		} `json:"verification"`
 	} `json:"commit"`
 	URL         string `json:"url"`

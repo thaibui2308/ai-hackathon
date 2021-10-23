@@ -84,7 +84,7 @@ func BuildFileChangedInfo(files []models.File) string {
 	var baseFileChanged string
 
 	for _, file := range files {
-		baseFileChanged += "[" + file.Filename + ":]" + FileStatusChecked(file.Status) + " " + file.Status + "\n"
+		baseFileChanged += "[" + file.Filename + ":](fg:cyan)" + " [" + file.Status + "]" + FileStatusChecked(file.Status) + "\n"
 	}
 	return baseFileChanged
 }
@@ -98,4 +98,11 @@ func FileStatusChecked(status string) string {
 		return deleted
 	}
 	return ""
+}
+
+func BuildCommitVerificationInfo(vInfo models.Verification) string {
+	var verification string
+	verification += "[Verified:](fg:green)" + strconv.FormatBool(vInfo.Verified) + "\n"
+	verification += "[Reason:](fg:green)" + vInfo.Reason + "\n"
+	return verification
 }

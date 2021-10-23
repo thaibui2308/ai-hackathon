@@ -12,7 +12,7 @@ import (
 	"github.com/thaibui2308/ai-hackathon/models"
 )
 
-func RenderUserInfo(userUrl string, stats models.Stats, issue string, files []models.File) {
+func RenderUserInfo(userUrl string, stats models.Stats, issue string, files []models.File, vInfo models.Verification) {
 	user, err := api.GetUserInfo(userUrl)
 
 	if err != nil {
@@ -27,6 +27,7 @@ func RenderUserInfo(userUrl string, stats models.Stats, issue string, files []mo
 	p := SetupProfileInfo(user)
 	p1 := SetupStatsCheckInfo(stats, issue)
 	p2 := SetupFilesChangedInfo(files)
+	p3 := SetupVerification(vInfo)
 	pc := SetupAdditionChart(files)
 	pc1 := SetupDeletionChart(files)
 	render := func() {
@@ -34,7 +35,7 @@ func RenderUserInfo(userUrl string, stats models.Stats, issue string, files []mo
 
 		img.Title = fmt.Sprintf(user.Login + "'s github")
 
-		ui.Render(img, p, p1, pc, pc1, p2)
+		ui.Render(img, p, p1, pc, pc1, p2, p3)
 	}
 	render()
 	uiEvents := ui.PollEvents()

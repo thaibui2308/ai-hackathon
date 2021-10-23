@@ -33,7 +33,8 @@ var SearchRepo = &cobra.Command{
 			os.Exit(1)
 		}
 		author := response[0]
-		tui.RenderUserInfo(author.Author.URL, commit.Stats, commit.Commit.Message, commit.Files)
+
+		tui.RenderUserInfo(author.Author.URL, commit.Stats, commit.Commit.Message, commit.Files, author.Commit.Verification)
 		fmt.Println(commit.Stats)
 	},
 }
