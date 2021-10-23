@@ -4,6 +4,7 @@ go 1.17
 
 require (
 	github.com/gizak/termui/v3 v3.1.0
+	github.com/kylelemons/go-gypsy v1.0.0
 	github.com/spf13/cobra v1.2.1
 )
 
