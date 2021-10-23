@@ -101,7 +101,34 @@ func SetupVerification(vInfo models.Verification) *widgets.Paragraph {
 	p.Border = true
 	p.Title = "Verification info"
 	p.Text = BuildCommitVerificationInfo(vInfo)
-	p.SetRect(115, 0, 140, 12)
+	p.SetRect(115, 0, 150, 12)
 
 	return p
+}
+
+func SetupOverallChart(files []models.File) *widgets.PieChart {
+	overalls := make([]float64, 0)
+
+	for _, file := range files {
+		overalls = append(overalls, float64(file.Deletions+file.Additions))
+
+	}
+
+	pc := widgets.NewPieChart()
+	pc.Title = "Total Changes"
+	pc.SetRect(115, 28, 150, 13)
+	pc.Colors = []termui.Color{2, 4, 6, 5}
+	delNum := len(overalls)
+	if delNum == 0 {
+		pc.Title = "Total changed by commit (no files changed)"
+	} else {
+		pc.Data = overalls[:delNum]
+	}
+
+	pc.AngleOffset = .15 * math.Pi
+	pc.LabelFormatter = func(i int, v float64) string {
+		return fmt.Sprintf("%.00f"+" %s", v, files[i].Filename)
+	}
+
+	return pc
 }

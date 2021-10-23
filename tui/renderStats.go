@@ -30,12 +30,13 @@ func RenderUserInfo(userUrl string, stats models.Stats, issue string, files []mo
 	p3 := SetupVerification(vInfo)
 	pc := SetupAdditionChart(files)
 	pc1 := SetupDeletionChart(files)
+	pc3 := SetupOverallChart(files)
 	render := func() {
 		img.Image = images[0]
 
 		img.Title = fmt.Sprintf(user.Login + "'s github")
 
-		ui.Render(img, p, p1, pc, pc1, p2, p3)
+		ui.Render(img, p, p1, pc, pc1, pc3, p2, p3)
 	}
 	render()
 	uiEvents := ui.PollEvents()
