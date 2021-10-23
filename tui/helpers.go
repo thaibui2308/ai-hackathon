@@ -11,6 +11,12 @@ import (
 	"github.com/thaibui2308/ai-hackathon/models"
 )
 
+const (
+	modified = "(fg:yellow)"
+	deleted  = "(fg:red)"
+	added    = "(fg:green)"
+)
+
 func BuildUserInfo(user models.User) string {
 	var baseProfile string
 	joinedAt := strings.Split(user.CreatedAt.String(), " ")
@@ -72,4 +78,24 @@ func BuildStatChecked(summary models.Stats, issues string) string {
 	basedStatsChecked += "[Deletions:](fg:yellow) " + strconv.Itoa(summary.Deletions) + "\n"
 
 	return basedStatsChecked
+}
+
+func BuildFileChangedInfo(files []models.File) string {
+	var baseFileChanged string
+
+	for _, file := range files {
+		baseFileChanged += "[" + file.Filename + ":]" + FileStatusChecked(file.Status) + " " + file.Status + "\n"
+	}
+	return baseFileChanged
+}
+
+func FileStatusChecked(status string) string {
+	if status == "modified" {
+		return modified
+	} else if status == "added" {
+		return added
+	} else if status == "removed" {
+		return deleted
+	}
+	return ""
 }

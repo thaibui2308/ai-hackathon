@@ -83,3 +83,14 @@ func SetupDeletionChart(files []models.File) *widgets.PieChart {
 
 	return pc
 }
+
+func SetupFilesChangedInfo(files []models.File) *widgets.Paragraph {
+	p := widgets.NewParagraph()
+	p.WrapText = true
+	p.Border = true
+	p.Title = "Files changed info"
+	p.Text = BuildFileChangedInfo(files)
+	p.SetRect(75, 0, 100, 14)
+
+	return p
+}
