@@ -21,7 +21,7 @@ func MergePullRequest(url string) {
 		if err != nil {
 			log.Fatal(err)
 		}
-		fmt.Println("The calculated length is:", len(string(contents)), "for the url:", url)
+
 		fmt.Println("   ", response.StatusCode)
 		hdr := response.Header
 		for key, value := range hdr {
